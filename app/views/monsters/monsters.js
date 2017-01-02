@@ -3,10 +3,9 @@ import React, { Component, classNames } from 'react';
 import Files from '../../store/modules/files';
 import { parseJson } from '../../utils/parsers';
 import { connect } from 'react-redux'
-import bootstrap from 'bootstrap/dist/css/bootstrap-flex.css';
-import { Monster } from './data';
+import { Monster, Ailments } from './data';
 import MonsterDetail from './form';
-import styles from '../body.css';
+import classnames from 'classnames';
 
 class MonstersPage extends Component {
 
@@ -34,6 +33,8 @@ class MonstersPage extends Component {
       let monsters = [];
       for (let name in data) {
         let monster = Object.assign(new Monster(name), data[name]);
+        let ailments = Object.assign(new Ailments(), data[name]['status']);
+        monster.status = ailments;
         monsters.push(monster);
       }
       this.state.monsters = monsters;
@@ -55,13 +56,13 @@ class MonstersPage extends Component {
    */
   get monsterList() {
     return (
-      <ul className={bootstrap['list-group']}>
+      <ul className={'list-group'}>
         {
           this.state.monsters.map((monster) => (
             <li className={
-                  bootstrap['list-group-item'] + ' ' + 
-                  bootstrap['list-group-item-action'] + ' ' + 
-                  ((monster == this.state.monster) ? bootstrap.active : '')
+                  classnames('list-group-item list-group-item-action', {
+                    'active': monster === this.state.monster 
+                  })
                 } 
                 onClick={this.setMonster(monster)}>
               {monster.name}
@@ -81,11 +82,11 @@ class MonstersPage extends Component {
 
   render() {
     return (
-      <div className={ bootstrap['row'] }>
-        <div className={ bootstrap['col-xs-4'] + ' ' + styles.panel}>
+      <div className={'row'} style={{ height: 'calc(100% - 64px)' }}>
+        <div className={'col-xs-4 panel'}>
           { this.monsterList }
         </div>
-        <div className={ bootstrap['col-xs-8'] + ' ' + styles.panel }>
+        <div className={'col-xs-8 panel invert'}>
           { this.monster }
         </div>
       </div>

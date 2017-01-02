@@ -10,6 +10,8 @@
     "url": "https://github.com/chentsulin"
   },
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.5"
   }
 }

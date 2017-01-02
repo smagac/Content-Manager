@@ -6,8 +6,7 @@ import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
-import 'bootstrap/dist/css/bootstrap-flex.css';
-import './app.global.css';
+import './app.global.scss';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);

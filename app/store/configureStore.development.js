@@ -5,7 +5,9 @@ import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
-const actionCreators = {};
+const actionCreators = {
+  push,
+};
 
 const logger = createLogger({
   level: 'info',
@@ -27,7 +29,7 @@ const enhancer = composeEnhancers(
   applyMiddleware(thunk, router, logger)
 );
 
-export default function configureStore(initialState: Object) {
+export default function configureStore(initialState: Object | void) {
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {

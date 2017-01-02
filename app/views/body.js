@@ -1,7 +1,8 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import styles from './body.css';
+import styles from './body.scss';
+import classnames from 'classnames';
 
 export default class AppBody extends Component {
   static propTypes = {
