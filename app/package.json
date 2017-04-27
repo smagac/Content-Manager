@@ -1,17 +1,15 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
-  "version": "1.0.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
-  "main": "./main.js",
-  "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+  "name": "content-manager",
+  "version": "0.0.0",
+  "description": "Content Manager for StoryMode",
+  "main": "./dist/main.js",
+  "dependencies": {
+    "vue": "^2.1.10",
+    "vue-electron": "^1.0.6",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^2.1.2",
+    "vuex": "^2.1.1"
   },
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "bootstrap": "^4.0.0-alpha.5"
-  }
+  "devDependencies": {},
+  "author": "Nicholas Hydock <nhydock@gmail.com>"
 }
