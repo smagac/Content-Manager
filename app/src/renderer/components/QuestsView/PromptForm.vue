@@ -6,7 +6,7 @@
                 <div class="pure-u-1">
                     <label>Text</label>
                     <textarea v-model="text"></textarea>
-                    <p class="pure-form-message">
+                    <p class="help">
                         Formatting:
                         <br>
                         <strong>~enemy</strong> to substitute a monster type

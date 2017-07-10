@@ -1,6 +1,6 @@
 <template>
     <div id="TitleForm" v-if="text != null">
-        <h3>Title {{title != -1 ? title : "New"}}</h3>
+        <h3 class="heading">Title {{title != -1 ? title : "New"}}</h3>
         <div class="pure-g">
             <form @submit.prevent="submit">
                 <div class="pure-u-1">

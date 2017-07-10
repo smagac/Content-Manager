@@ -5,7 +5,7 @@
                 <form @submit.prevent="submit">
                 <div class="pure-u-1">
                     <textarea v-model="text" class="pure-u-1"></textarea>
-                    <p class="pure-form-message">Use %s to dynamically insert adjectives into your location title</p>
+                    <p class="help">Use %s to dynamically insert adjectives into your location title</p>
                 </div>
                 <div class="pure-u-1">
                     <button type="submit">Save</button>
@@ -40,7 +40,7 @@
                 } else {
                     this.text = "";
                 }
-            }
+            },
         },
         watch: {
             'location'(){
