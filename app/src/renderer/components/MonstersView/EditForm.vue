@@ -3,9 +3,11 @@
         <div class="pure-g" style="max-width: 800px">
             <form @submit.prevent="submit">
                 <div class="pure-u-1-1">
-                    <img class="thumb" :src="image" width="128" height="128" />
-                    <img class="thumb" :src="image" width="64" height="64" />
-                    <img class="thumb" :src="image" width="16" height="16" />
+                    <template v-if="image">
+                        <img class="thumb" :src="image" width="128" height="128" />
+                        <img class="thumb" :src="image" width="64" height="64" />
+                        <img class="thumb" :src="image" width="16" height="16" />
+                    </template>
                     <button @click.prevent.stop="choosingSprite = true">Change Sprite</button>
                 </div>
                 <div class="pure-u-5-6">
@@ -93,8 +95,8 @@
                 <div class="pure-u-1-3">
                     <input type="text" v-model="data.maxexp"/>
                 </div>
-                <div>
-                    <h3>Ailments</h3>
+                <div class="pure-u-1">
+                    <h2>Ailments</h2>
                 </div>
                 <div class="pure-u-1-3">
                     <label>Poison</label>
@@ -104,7 +106,24 @@
                     <label>Venom</label>
                     <input type="text" v-model="ailments.venom"/>
                 </div>
-                <div>
+                <div class="pure-u-1-3">
+                    <label>Confuse</label>
+                    <input type="text" v-model="ailments.confuse"/>
+                </div>
+                <div class="pure-u-1-3">
+                    <label>Sprain</label>
+                    <input type="text" v-model="ailments.sprain"/>
+                </div>
+                <div class="pure-u-1-3">
+                    <label>Arthritis</label>
+                    <input type="text" v-model="ailments.arthritis"/>
+                </div>
+                <div class="pure-u-1-3">
+                    <label>Blind</label>
+                    <input type="text" v-model="ailments.blind"/>
+                </div>
+                <div class="pure-u-1">
+                    <hr>
                     <button type="submit">Save</button>
                 </div>
             </form>
@@ -140,6 +159,7 @@
             this.maxspd = 0;
             this.maxexp = 0;
             this.level = 0;
+            this.type = null;
         }
     }
 
@@ -175,7 +195,10 @@
                 'assetsDir': 'config/Assets'
             }),
             image() {
-                return `asset://monsters/${this.data.type}.png`;
+                if (this.data.type) {
+                    return `asset://monsters/${this.data.type}.png`;
+                }
+                return null;
             }
         },
         methods: {
@@ -198,7 +221,8 @@
             },
             submit() {
                 if (this.monster == -1) {
-                    this.createMonster(this.data);
+                    let m_id = this.createMonster(this.data);
+                    this.$router.go({name: 'monster-edit', params: {monster: m_id}});
                 } else {
                     this.updateMonster(this.data);
                 }

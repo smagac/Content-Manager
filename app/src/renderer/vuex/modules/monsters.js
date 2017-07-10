@@ -5,16 +5,13 @@ const path = require('path');
 
 const state = {
     monsters: [],
-    types: []
+    types: [],
+    orderedMonsters: []
 };
 
 const getters = {
     'monsters/Monsters'(state) {
-        let list = [];
-        for (let monster of Object.keys(state.monsters)) {
-            list.push(Object.assign({name: monster}, state.monsters[monster]));
-        }
-        return list;
+        return state.orderedMonsters;
     },
     'monsters/Types'(state) {
         return state.types;
@@ -30,7 +27,12 @@ const mutations = {
             state.monsters[monster]._guid = guid();
         }
 
-        
+        let list = [];
+        for (let monster of Object.keys(state.monsters)) {
+            list.push(Object.assign({name: monster}, state.monsters[monster]));
+        }
+        state.orderedMonsters = list;
+
         let files = fs.readdirSync(directory+'/monsters/');
         let types = [];
         console.log(files);
@@ -44,6 +46,12 @@ const mutations = {
     },
     'monsters/SaveMonster'(state, monster) {
         state.monsters[monster.name] = monster;
+
+        let list = [];
+        for (let m of Object.keys(state.monsters)) {
+            list.push(Object.assign({name: m}, state.monsters[m]));
+        }
+        state.orderedMonsters = list;
     }
 }
 
@@ -63,6 +71,9 @@ const actions = {
         }
         commit('monsters/SaveMonster', monster);
         EventBus.$emit('alert', "Monster has been created");
+
+        // get the monster's new id
+        return state.orderedMonsters.indexOf(monster);
     }
 }
 
