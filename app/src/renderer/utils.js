@@ -12,11 +12,11 @@ export function parseJson(filename) {
 
 /**
  * Parses a csv into a 2d-array of strings.
- * Use your own data-types to parse out the results
+ * Use your own data-types to parse out the results.
  */
-export function parseCSV(filename) {
+export function parseCSV(filename, mapping) {
   const file = fs.readFileSync(filename, 'utf8');
-  const elements = file.split('\r\n').map(value => value.split(',').forEach(str => str.trim()));
+  const elements = file.split('\r\n').map(value => value.split(',').map(key => key.trim()));
   return elements;
 }
 

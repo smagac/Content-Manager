@@ -4,8 +4,6 @@ const path = require('path');
 
 const state = {
   assets: '',
-  monsters: [],
-  items: [],
 }
 
 const getters = {
@@ -15,12 +13,6 @@ const getters = {
     Modifiers(state) {
         return state.assets + '/content/adjectives.csv';
     },
-    Monsters(state) {
-        return state.monsters;
-    },
-    Items(state) {
-      return state.items;  
-    }
 }
 
 const mutations = {
@@ -29,8 +21,6 @@ const mutations = {
     if (state.assets != directory) {
       localStorage.setItem('assets', directory);
       state.assets = directory;
-      state.monsters = parseJson(directory + '/content/monsters.json');
-      state.items = parseCSV(directory + '/content/items.csv');
 
       // set protocol resolution
       remote.getGlobal('configuration').assetsPath = directory;

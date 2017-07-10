@@ -15,7 +15,15 @@ export default [
   {
     path: '/items',
     name: 'items-list',
-    component: require('components/Monsters'),
+    component: require('components/Items'),
+    children: [
+      {
+        path: ':item',
+        name: 'item-edit',
+        component: require('components/ItemsView/EditForm'),
+        props: true
+      }
+    ]
   },
   {
     path: '/quests',
