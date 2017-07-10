@@ -1,6 +1,8 @@
 <template>
   <nav>
-    <img class="logo" src="../assets/icon.png" width="64" height="64">
+    <div class="logo">
+      <img src="../assets/icon.png" width="64" height="64">
+    </div>
     <router-link :to="{name: 'settings'}">
       <i class="fa fa-cog"></i>
       <label>Settings</label>
@@ -38,7 +40,10 @@
   }
 
   .logo {
-      margin: auto;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   nav {
@@ -64,11 +69,12 @@
     justify-content: center;
     text-align: center;
     flex-direction: column;
+    font-family: 'Alagard';
   }
   a.router-link-active {
-      background: white;
-      color: black;
       opacity: 1;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
   }
   a img {
     margin: 4px auto;
