@@ -30,9 +30,8 @@
             showToast(toast) {
                 let t = new Toast(toast);
                 this.toasts.push(t);
-                let index = this.toasts.length;
                 setTimeout(() => {
-                    this.toasts.splice(index, 1)
+                    this.toasts.splice(this.toasts.indexOf(t), 1);
                 }, 4000);
             }
         }
@@ -49,6 +48,7 @@
         bottom: 0;
         width: 250px;
         display: flex;
+        flex-direction: column;
         pointer-events: none;
     }
 
@@ -62,5 +62,6 @@
         font-family: "Alagard";
         align-self: flex-start;
         box-shadow: 4px 4px 0 0 black;
+        margin-bottom: 10px;
     }
 </style>
